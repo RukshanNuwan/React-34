@@ -6,7 +6,7 @@ import AppLoading from 'expo-app-loading';
 
 // custom components
 import Home from './screens/home';
-import Navigator from './routes/homeStack';
+import Navigator from './routes/drawer';
 
 // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // function area
