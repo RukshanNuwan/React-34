@@ -6,6 +6,7 @@ import AppLoading from 'expo-app-loading';
 
 // custom components
 import Home from './screens/home';
+import Navigator from './routes/homeStack';
 
 // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // function area
@@ -21,7 +22,7 @@ export default function App() {
 
   if (fontLoaded) {
     return (
-      <Home />
+      <Navigator />
     );
   } else {
     return (
