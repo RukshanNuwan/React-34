@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, Text, Modal } from 'react-native';
+import { StyleSheet, View, Text, Modal, Keyboard, TouchableWithoutFeedback } from 'react-native';
 import { FlatList, TouchableOpacity } from 'react-native-gesture-handler';
 import { MaterialIcons } from '@expo/vector-icons';
 
@@ -17,20 +17,31 @@ export default function Home({ navigation }) {
         { title: 'Not so "Final" fantasy', rating: 3, body: 'lorem ipsum', key: '3' }
     ]);
 
+    const addReview = (review) => {
+        review.key = Math.random().toString();
+        setReviews((currentReviews) => {
+            return [review, ...currentReviews];
+        });
+        // hide the form modal
+        setModalOpen(false);
+    }
+
 
     return (
         <View style={globalStyles.container}>
             <Modal visible={modalOpen} animationType='fade'>
-                <View style={styles.modalContent}>
-                    <MaterialIcons
-                        name='close'
-                        size={24}
-                        onPress={() => setModalOpen(false)}
-                        // multiple styles
-                        style={{ ...styles.modalToggle, ...styles.modalClose }}
-                    />
-                    <ReviewForm />
-                </View>
+                <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+                    <View style={styles.modalContent}>
+                        <MaterialIcons
+                            name='close'
+                            size={24}
+                            onPress={() => setModalOpen(false)}
+                            // multiple styles
+                            style={{ ...styles.modalToggle, ...styles.modalClose }}
+                        />
+                        <ReviewForm addReview={addReview} />
+                    </View>
+                </TouchableWithoutFeedback>
             </Modal>
 
             <MaterialIcons
